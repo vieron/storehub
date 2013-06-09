@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><%= @title if @title %></title>
+  
+  <link rel="stylesheet" href="<%= "#{app_root}/css/app.css" %>">
+
+</head>
+<body class="unloaded">
+
+  <div class="container">
+
+    <%= yield %>
+
+  </div><!-- /container -->
+
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="<%= "#{app_root}/js/jquery.js" %>"></script>
+  <script type="text/javascript">
+    var app_root = "<%=app_root%>";
+    var links_api = app_root+'/png.json';
+  </script>
+  <script src="<%= "#{app_root}/js/main.js" %>"></script>
+
+</body>
+</html>

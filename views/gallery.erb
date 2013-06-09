@@ -1,0 +1,9 @@
+<ul>
+	<% @imgs.each do |img| %>
+	<li>
+		<a href="<%=img["url_o"]%>" target="_blank"><img src="<%=img["url_z"]%>"></a>
+	</li>
+	<% end %>
+</ul>
+
+<%= paginate @imgs %>

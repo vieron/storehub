@@ -1,0 +1,10 @@
+*.tmp
+*~
+*#*
+vendor
+.sass-cache
+.bundle
+config.yml
+.env
+.DS_Store
+.rvmrc
