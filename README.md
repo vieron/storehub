@@ -1,17 +1,23 @@
-# Sinatra+Heroku+PhantomJS
+# Sinatra + Heroku
 
-## Installation
+Uses dropbox (dropbox-sdk gem) and flickr (flickraw gem)
 
-### For phantom and ruby on heroku*
+# Local installation
 
-heroku create --buildpack git://github.com/ddollar/heroku-buildpack-multi.git
-git push heroku master
-heroku open
+## Flickr auth
 
-heroku config:add LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/lib:/app/vendor/phantomjs/lib
-heroku config:add PATH=bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin:/app/vendor/phantomjs/bin
+- Register and app in Flickr
+- Add secret and api_token to .env file
+- Go to http://0.0.0.0:5000/2flickr.json
+- Read console feedback:
+	- Go to the auth page and confirm
+	- Paste in terminal the number given by flickr
+	- Prease Enter
+- Continue reading the console:
+	- Access_token and access_secret will be echoed. Add them to the .env file
 
-### For Dropbox
+
+## Dropbox auth
 
 Create a new app in: https://www.dropbox.com/developers/apps
 
@@ -29,20 +35,24 @@ Create a new app in: https://www.dropbox.com/developers/apps
 9. restart foreman, and enjoy
 
 
-** On Heroku **
 
-1. `heroku config:add DROPBOX_KEY=app_key`
-2. `heroku config:add DROPBOX_SECRET=app_secret`
+## Heroku Installation
 
-or
+heroku create --buildpack git://github.com/ddollar/heroku-buildpack-multi.git
+heroku config:add $(cat .env)
 
-1. `heroku config:add $(cat .env)`
-2. `heroku open`
-3. It will take you to dropbox, authorize the app. You will be redirected back and it will tell you the new DROPBOX_TOKEN
-9. `heroku config add DROPBOX_TOKEN=that_token`
+git push heroku master
+heroku open
 
 
-## Usage
+
+# Usage
 
 http://localhost:5000/2dropbox.json?url=http://vieron.net
+http://localhost:5000/2flickr.json?url=http://vieron.net
 http://localhost:5000/png.json?url=http://vieron.net
+http://localhost:5000/captures
+
+
+# Links
+http://www.flickr.com/services/api/
