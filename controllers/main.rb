@@ -79,7 +79,7 @@ end
 def get_b64_capture(url)
   # get website capture through url2png API
   url2png_uri = URI.parse(URL_CAPTURE_ENDPOINT)
-  url2png_uri.query = URI.encode_www_form({
+  url2png_uri.query = ::URI.encode_www_form({
     :url => url,
     :type => "json"
   })
