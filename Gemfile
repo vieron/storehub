@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby '1.9.2p325'
+
 gem 'foreman'
 gem 'rack'
 gem 'sinatra'
