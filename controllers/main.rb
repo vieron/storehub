@@ -19,8 +19,8 @@ configure do
   enable :logging
 
   # see https://github.com/sinatra/sinatra/issues/518
-  use Rack::Protection, reaction: :drop_session
-  set :protection, :except => [:json_csrf, :auth_token, :'auth-token']
+  # use Rack::Protection, reaction: :drop_session
+  set :protection, :except => [:http_origin, :accept, :origin, :'content-type', :json_csrf, :remote_token, :auth_token, :'auth-token']
   # disable :protection
 
   # enable :cross_origin
@@ -38,7 +38,7 @@ before do
   if request.request_method == 'OPTIONS'
     response.headers['Access-Control-Allow-Origin'] = "*"
     response.headers['Access-Control-Allow-Methods'] = %w{GET POST OPTIONS}.join(',')
-    response.headers['Access-Control-Allow-Headers'] = "auth-token"
+    response.headers['Access-Control-Allow-Headers'] = "accept, origin, auth-token, content-type"
     response.headers['Access-Control-Allow-Credentials'] = "true"
     halt 200
   end
