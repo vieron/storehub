@@ -1,8 +1,15 @@
+//javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://storehub.herokuapp.com/bookmarklet.js';})();
+
+
+
+
+
+
 ;(function(window, document) {
     var HOST;
 
     if (window.top.location.port === "") {
-        HOST = 'http://url2img.herokuapp.com/';
+        HOST = 'http://storehub.herokuapp.com/';
     } else {
         HOST = 'http://localhost:5000/';
     }
@@ -39,7 +46,7 @@
         var $loading = $('<div style="'+ styles +'">capturing...</div>');
         $loading.appendTo(document.body).fadeIn();
 
-        $.ajax(HOST + "2dropbox.json", {
+        $.ajax(HOST + "2flickr.json", {
             data: {
                 url: window.top.location.href
             },
@@ -58,7 +65,5 @@
         });
 
     });
-
-
 
 })(window, document, undefined);
