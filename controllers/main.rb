@@ -175,7 +175,7 @@ get '/2flickr.json' do
   halt 500, 'Not image returned' unless image
 
   begin
-    photo_id = flickr.upload_photo img_to_io(image), :title => @url, :tags => 'web-capture', :is_public => 1, :content_type => 2
+    photo_id = flickr.upload_photo img_to_io(image), :title => @url, :tags => 'webcapture', :is_public => 1, :content_type => 2
   rescue FlickRaw::FailedResponse => e
     puts "Error uploading image: #{e.msg}"
   end
@@ -214,15 +214,16 @@ get '/' do
     #puts user.inspect
     #puts user["nsid"]
 
-    # @imgs = flickr.people.getPublicPhotos :user_id => user["nsid"], :extras => 'description,url_t,url_z,url_o,date_upload', :per_page => 10, :page => page, :min_date => Date.new(2009,11,26).to_time.to_i
-    imgs = flickr.people.getPublicPhotos :user_id => user["nsid"], :extras => 'description,url_t,url_z,url_o,date_upload', :per_page => 500, :min_date => Date.new(2009,11,26).to_time.to_i
+    # @imgs = flickr.people.getPublicPhotos :user_id => user["nsid"], :extras => 'description,url_t,url_z,url_o,date_upload', :per_page => 10, :page => page, :min_date => Date.new(2013,6,9).to_time.to_i
+    imgs = flickr.people.getPublicPhotos :user_id => user["nsid"], :extras => 'description,url_t,url_z,url_o,date_upload,tags', :per_page => 500
+    imgs = imgs.to_a.select { |img| img["tags"].match('webcapture')}
     #puts imgs.inspect
   rescue FlickRaw::FailedResponse => e
     puts "Error accessing images: #{e.msg}"
   end
 
 
-  @imgs = Kaminari.paginate_array(imgs.to_a).page(page).per(10)
+  @imgs = Kaminari.paginate_array(imgs).page(page).per(10)
 
   erb :gallery
 end
