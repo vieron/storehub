@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby '1.9.2p325'
+ruby '1.9.2'
 
 gem 'foreman'
 gem 'rack'
