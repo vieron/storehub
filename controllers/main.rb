@@ -194,7 +194,7 @@ end
 
 
 
-get '/captures' do
+get '/' do
   if !ENV['FLICKR_ACCESS_TOKEN'] and !ENV['FLICKR_ACCESS_SECRET']
     start_flickr_auth_flow
     return
@@ -211,12 +211,12 @@ get '/captures' do
   begin
     user = flickr.people.findByUsername :username => 'vieron'
 
-    puts user.inspect
-    puts user["nsid"]
+    #puts user.inspect
+    #puts user["nsid"]
 
     # @imgs = flickr.people.getPublicPhotos :user_id => user["nsid"], :extras => 'description,url_t,url_z,url_o,date_upload', :per_page => 10, :page => page, :min_date => Date.new(2009,11,26).to_time.to_i
     imgs = flickr.people.getPublicPhotos :user_id => user["nsid"], :extras => 'description,url_t,url_z,url_o,date_upload', :per_page => 500, :min_date => Date.new(2009,11,26).to_time.to_i
-    puts imgs.inspect
+    #puts imgs.inspect
   rescue FlickRaw::FailedResponse => e
     puts "Error accessing images: #{e.msg}"
   end
