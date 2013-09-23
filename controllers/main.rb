@@ -121,6 +121,8 @@ options '/2dropbox.json' do
     ''
 end
 
+
+
 get '/2dropbox.json' do
   response.headers['Access-Control-Allow-Origin'] = "*"
   response.headers['Access-Control-Allow-Methods'] = %w{GET POST OPTIONS}.join(',')
@@ -152,8 +154,6 @@ get '/2dropbox.json' do
 
   file.to_json if file
 end
-
-
 
 
 
@@ -194,7 +194,6 @@ end
 
 
 
-
 get 'proxy.html' do
   render :proxy
 end
@@ -207,30 +206,26 @@ get '/' do
     return
   end
 
+  per_page = 15
   page = params[:page] or 1
 
   flickr.access_token = ENV['FLICKR_ACCESS_TOKEN']
   flickr.access_secret = ENV['FLICKR_ACCESS_SECRET']
   login = flickr.test.login
 
-  puts "page #{page}"
-
   begin
     user = flickr.people.findByUsername :username => 'vieron'
 
-    #puts user.inspect
-    #puts user["nsid"]
+    imgs = flickr.people.getPublicPhotos :user_id => user["nsid"], :extras => 'description,url_t,url_z,url_o,date_upload', :per_page => per_page, :page => page
+    total = imgs.total
+    imgs = imgs.to_a
 
-    # @imgs = flickr.people.getPublicPhotos :user_id => user["nsid"], :extras => 'description,url_t,url_z,url_o,date_upload', :per_page => 10, :page => page, :min_date => Date.new(2013,6,9).to_time.to_i
-    imgs = flickr.people.getPublicPhotos :user_id => user["nsid"], :extras => 'description,url_t,url_z,url_o,date_upload,tags', :per_page => 500
-    imgs = imgs.to_a.select { |img| img["tags"].match('webcapture')}
-    #puts imgs.inspect
   rescue FlickRaw::FailedResponse => e
     puts "Error accessing images: #{e.msg}"
   end
 
 
-  @imgs = Kaminari.paginate_array(imgs).page(page).per(10)
+  @imgs = Kaminari.paginate_array(imgs, total_count: total).page(page).per(per_page)
 
   erb :gallery
 end
