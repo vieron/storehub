@@ -42,20 +42,18 @@ Create a new app in: https://www.dropbox.com/developers/apps
 
 ## Heroku Installation
 
-heroku create --buildpack git://github.com/ddollar/heroku-buildpack-multi.git
-heroku config:add $(cat .env)
+    $ heroku create --buildpack git://github.com/ddollar/heroku-buildpack-multi.git
+    $ heroku config:add $(cat .env)
 
-git push heroku master
-heroku open
-
-
+    $ git push heroku master
+    $ heroku open
 
 ## Usage
 
-http://localhost:5000/2dropbox.json?url=http://vieron.net
-http://localhost:5000/2flickr.json?url=http://vieron.net
-http://localhost:5000/png.json?url=http://vieron.net
-http://localhost:5000/captures
+- http://localhost:5000/2dropbox.json?url=http://vieron.net
+- http://localhost:5000/2flickr.json?url=http://vieron.net
+- http://localhost:5000/png.json?url=http://vieron.net
+- http://localhost:5000/captures
 
 
 ## Links
