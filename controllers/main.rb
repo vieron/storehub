@@ -194,8 +194,8 @@ end
 
 
 
-get 'proxy.html' do
-  render :proxy
+get '/proxy.html' do
+  erb :proxy, :layout => false
 end
 
 
