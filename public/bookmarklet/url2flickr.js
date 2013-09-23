@@ -33,7 +33,7 @@
     }
 
 
-    loadScript("http://jpillora.com/xdomain/dist/0.5/xdomain.min.js", function(){
+    loadScript("https://raw.github.com/vieron/storehub/master/public/js/xdomain.min.js", function(){
         loadScript("https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js", function(){
             var styles = 'position:fixed; z-index: 99999999; top: 0; right: 0; background: #000; color: #FFF; display: none; padding: 20px; font-size: 18px;';
             var $loading = $('<div style="'+ styles +'">capturing...</div>');
