@@ -1,10 +1,14 @@
-# Sinatra + Heroku
+# Storehub
+
+API to store images to flickr or dropbox.
 
 Uses dropbox (dropbox-sdk gem) and flickr (flickraw gem)
 
-# Local installation
 
-## Flickr auth
+
+## Local installation
+
+### Flickr auth
 
 - Register and app in Flickr
 - Add secret and api_token to .env file
@@ -17,7 +21,7 @@ Uses dropbox (dropbox-sdk gem) and flickr (flickraw gem)
 	- Access_token and access_secret will be echoed. Add them to the .env file
 
 
-## Dropbox auth
+### Dropbox auth
 
 Create a new app in: https://www.dropbox.com/developers/apps
 
@@ -46,7 +50,7 @@ heroku open
 
 
 
-# Usage
+## Usage
 
 http://localhost:5000/2dropbox.json?url=http://vieron.net
 http://localhost:5000/2flickr.json?url=http://vieron.net
@@ -54,5 +58,11 @@ http://localhost:5000/png.json?url=http://vieron.net
 http://localhost:5000/captures
 
 
-# Links
+## Links
 http://www.flickr.com/services/api/
+
+
+## Bookmarklets
+
+### Store image in flickr
+javascript:(function(){document.head.appendChild(document.createElement('script')).src='http://0.0.0.0:5000/bookmarklet/url2flickr.js';})();
