@@ -174,7 +174,7 @@ get '/2flickr.json' do
   flickr.access_token = ENV['FLICKR_ACCESS_TOKEN']
   flickr.access_secret = ENV['FLICKR_ACCESS_SECRET']
   login = flickr.test.login
-    
+
   image = get_b64_capture @url
   halt 500, 'Not image returned' unless image
 
@@ -183,7 +183,7 @@ get '/2flickr.json' do
   rescue FlickRaw::FailedResponse => e
     puts "Error uploading image: #{e.msg}"
   end
-  
+
   info = flickr.photos.getInfo(:photo_id => photo_id)
   if info
     {
@@ -195,6 +195,9 @@ end
 
 
 
+get 'proxy.html' do
+  render :proxy
+end
 
 
 
@@ -211,7 +214,7 @@ get '/' do
   login = flickr.test.login
 
   puts "page #{page}"
-    
+
   begin
     user = flickr.people.findByUsername :username => 'vieron'
 
