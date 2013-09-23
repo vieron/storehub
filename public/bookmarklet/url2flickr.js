@@ -1,5 +1,5 @@
 ;(function() {
-    var DEV = true;
+    var DEV = false;
     var HOST;
 
     if (DEV) {
