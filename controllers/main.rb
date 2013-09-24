@@ -10,8 +10,8 @@ require './controllers/dropbox'
 require './controllers/flickr'
 
 URL_CAPTURE_ENDPOINT = 'http://url-capture.herokuapp.com/url2png'
+# URL_CAPTURE_ENDPOINT = 'http://0.0.0.0:3000/url2png'
 DROPBOX_CAPTURES_FOLDER = 'web-captures/'
-
 
 
 configure do

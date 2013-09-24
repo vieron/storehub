@@ -65,3 +65,9 @@ http://www.flickr.com/services/api/
 ### Store image in flickr
 javascript:(function(){document.head.appendChild(document.createElement('script')).src='http://0.0.0.0:5000/bookmarklet/url2flickr.js';})();
 javascript:(function(){document.head.appendChild(document.createElement('script')).src='https://raw.github.com/vieron/storehub/master/public/bookmarklet/url2flickr.js';})();
+
+
+##TO-DO
+
+- Remove jquery from bookmaklet
+- Auth
